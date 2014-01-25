@@ -5,7 +5,7 @@
 
 sed -i s/CONFIG_LOCALVERSION=\".*\"/CONFIG_LOCALVERSION=\"-leanKernel-${1}\"/ .config
 
-make ARCH=arm CROSS_COMPILE=/data/linaro/android-toolchain-eabi/bin/arm-linux-androideabi- -j2
+make ARCH = arm CROSS_COMPILE = /home/randommm/Documents/linaro2/bin/arm-gnueabi- -j4
 
 cp arch/arm/boot/zImage mkboot/
 #sed -i s/CONFIG_LOCALVERSION=\".*\"/CONFIG_LOCALVERSION=\"\"/ .config
