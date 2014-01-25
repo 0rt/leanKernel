@@ -376,6 +376,16 @@ KBUILD_CFLAGS   := -Wall -Wno-address -Wundef -Wstrict-prototypes -Wno-trigraphs
 		   -mno-unaligned-access
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL := -O2 -mtune=cortex-a9 -march=armv7-a -mfpu=neon -ftree-vectorize
+
+ifdef CONFIG_CC_GRAPHITE_OPTIMIZATION
+KBUILD_CFLAGS        += -floop-interchange -floop-strip-mine \
+                 -floop-block
+endif
+
+ifdef CONFIG_CC_LINK_TIME_OPTIMIZATION
+KBUILD_CFLAGS        += -flto -fno-toplevel-reorder
+endif
+
 KBUILD_AFLAGS   := -D__ASSEMBLY__
 KBUILD_AFLAGS_MODULE  := -DMODULE
 KBUILD_CFLAGS_MODULE  := -DMODULE
@@ -1570,3 +1580,5 @@ FORCE:
 # Declare the contents of the .PHONY variable as phony.  We keep that
 # information in a variable so we can use it in if_changed and friends.
 .PHONY: $(PHONY)
+
+
